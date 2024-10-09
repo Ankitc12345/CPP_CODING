@@ -1,1 +1,63 @@
+#include<bits/stdc++.h> 
+using namespace std;  
+ 
+void dijkstra(vector<vector<int>>&graph,int src,int dst){ 
 
+    vector<bool> visit(n,false); 
+    vector<int> distance(n,INF);                 //distance of all vertices from source node 
+    distance[src]=0;                             //base case
+
+    priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq; 
+    pq.push({0,src}); 
+
+ 
+    while(!pq.empty()){ 
+ 
+        auto[dist,node]=pq.top(); 
+        pq.pop(); 
+        visit[node]=true; 
+ 
+        if(dist > distance[node]) continue; 
+ 
+        for(auto[neighbour,weight]:graph[node]){ 
+ 
+        if(visit[neighbour])  continue; 
+         
+        if(distance[neighbour]>distance[node]+weight){ 
+            distance[neighbour]=distance[node]+weight; 
+            pq.push({dis[neighbour],neighbour}); 
+        } 
+        } 
+ 
+} 
+} 
+
+
+int main(){ 
+cout<<"Enter the numebr of nodes in the graph"<<endl; 
+int n; 
+cin>>n; 
+
+vector<vector<int>>edges={ 
+{0,1,w}, 
+{} 
+}
+
+vector<vector<pair<int,int>>>adj(n); 
+
+
+for(auto e:edges){ 
+adj[e[0]].push_back({e[1],e[2]}); 
+}
+
+cout<<"Enter the source node"<<endl; 
+int source; 
+cin>>source; 
+
+cout<<"Enter the destination node"<<endl; 
+int destination; 
+cin>>destination; 
+
+dijkstra(adj,source,destination); 
+return 0; 
+} 
